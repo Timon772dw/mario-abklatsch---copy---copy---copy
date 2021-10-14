@@ -1,5 +1,8 @@
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -140
+    if (0 == mySprite.vy) {
+    	
+    }
 })
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -231,10 +234,9 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Projectile, function (sprite, ot
         . . . b b b d d d d d b . . . . 
         . . . . . . b b b b b . . . . . 
         `],
-    200,
+    100,
     false
     )
-    Projektil.destroy()
 })
 controller.right.onEvent(ControllerButtonEvent.Released, function () {
     animation.stopAnimation(animation.AnimationTypes.All, mySprite)
@@ -486,7 +488,7 @@ for (let Wert of tiles.getTilesByType(sprites.swamp.swampTile9)) {
     )
     tiles.placeOnTile(Bogenschütze, Wert)
     tiles.setTileAt(Wert, assets.tile`transparency16`)
-    while (mySprite.x >= 30) {
+    while (mySprite.x > 30) {
         Projektil = sprites.create(img`
             . . . . . . . . . . . . . . . . 
             . . . . . . . . . . . . . . . . 
@@ -507,6 +509,7 @@ for (let Wert of tiles.getTilesByType(sprites.swamp.swampTile9)) {
             `, SpriteKind.Projectile)
         tiles.placeOnTile(Projektil, Wert)
         Projektil.follow(mySprite, 35)
-        pause(5000)
+        pause(7000)
+        Projektil.destroy()
     }
 }
