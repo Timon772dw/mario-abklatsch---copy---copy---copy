@@ -81,6 +81,10 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     )
     mySprite.startEffect(effects.fire)
 })
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Player, function (sprite, otherSprite) {
+    info.changeLifeBy(1)
+    pause(5000)
+})
 controller.left.onEvent(ControllerButtonEvent.Released, function () {
     animation.stopAnimation(animation.AnimationTypes.All, mySprite)
     effects.clearParticles(mySprite)
@@ -390,6 +394,7 @@ mySprite = sprites.create(img`
 mySprite.setPosition(31, 91)
 mySprite.sayText(":)", 2000, true)
 controller.moveSprite(mySprite, 100, 0)
+info.setLife(3)
 scene.cameraFollowSprite(mySprite)
 scroller.scrollBackgroundWithCamera(scroller.CameraScrollMode.OnlyHorizontal)
 mySprite.ay += 200
